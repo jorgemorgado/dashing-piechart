@@ -1,5 +1,9 @@
 # dashing-piechart
 
+## Preview
+
+![PieChart](https://raw.githubusercontent.com/wiki/jorgemorgado/dashing-piechart/piechart.png)
+
 ## Description
 
 Simple [Dashing](http://shopify.github.com/dashing) widget (and associated job)
