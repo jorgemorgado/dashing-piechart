@@ -60,6 +60,38 @@ options = { segmentStrokeColor: '#333' }
 send_event('piechart', { segments: data, options: options })
 ```
 
+### Title Position
+
+By default the title will be displayed on the top of the widget. If you
+prefer to move it to the center, change the `$title-position` variable on the
+SCSS file. Example:
+
+```scss
+$title-position:    center;
+```
+
+### Margins
+
+You can also adjust the chart's margins: top, left, right and bottom. By
+default they are all 0 (pixels) to use the whole available space. But if
+needed you can change their value using the `data-` attributes. Example:
+
+```erb
+<li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+  <div data-id="barchart" data-view ="BarChart" data-left-margin="5" data-top-margin="10"></div>
+</li>
+```
+
+If not set, both right and bottom margins will be equal to left and top margins
+respectively. This is likely what you want to keep the chart centered within
+the widget. If not, set their values also using the `data-` attributes:
+
+```erb
+<li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+  <div data-id="barchart" data-view ="BarChart" data-right-margin="10" data-bottom-margin="5"></div>
+</li>
+```
+
 ## Contributors
 
 - [Jorge Morgado](https://github.com/jorgemorgado)
