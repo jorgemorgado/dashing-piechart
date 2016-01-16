@@ -78,7 +78,7 @@ needed you can change their value using the `data-` attributes. Example:
 
 ```erb
 <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
-  <div data-id="barchart" data-view ="BarChart" data-left-margin="5" data-top-margin="10"></div>
+  <div data-id="piechart" data-view ="PieChart" data-left-margin="5" data-top-margin="10"></div>
 </li>
 ```
 
@@ -88,7 +88,7 @@ the widget. If not, set their values also using the `data-` attributes:
 
 ```erb
 <li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
-  <div data-id="barchart" data-view ="BarChart" data-right-margin="10" data-bottom-margin="5"></div>
+  <div data-id="piechart" data-view ="PieChart" data-right-margin="10" data-bottom-margin="5"></div>
 </li>
 ```
 
