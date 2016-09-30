@@ -11,11 +11,16 @@ to render pie charts. Uses [Chart.js](http://www.chartjs.org/) library.
 
 ## Dependencies
 
-Download the latest V1 release of `Chart.min.js` from
+Download the latest v2.x.x release of `Chart.bundle.min.js` from
 [https://github.com/chartjs/Chart.js/releases](https://github.com/chartjs/Chart.js/releases)
-and copy it into `assets/javascripts`.
+and copy it into `assets/javascripts`. Make sure to remove any older versions
+of Chart.js from the `assets/javascripts` folder.
 
-`dashing-piechart` is not yet compatible with V2 of ChartJS.
+NOTE: `dashing-piechart` is compatible with v2 of Chart.js. If you still
+want to use the older version of Chart.js, you need to download the latest v1
+of `Chart.min.js` and install [v1.0](https://github.com/jorgemorgado/dashing-piechart/releases/tag/v1.0)
+of this widget. Although, remember that older versions are not maintained
+anymore.
 
 ## Usage
 
@@ -26,7 +31,7 @@ Add the following code on the desired dashboard:
 
 ```erb
 <li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
-  <div data-id="piechart" data-view ="PieChart" data-title="Pie Chart" data-moreinfo="Using segmentShowStroke: true"></div>
+  <div data-id="piechart" data-view ="PieChart" data-title="Pie Chart" data-moreinfo=""></div>
 </li>
 ```
 
@@ -34,36 +39,25 @@ Create your pie chart job `my_piechart_job.rb`:
 
 ```ruby
 # Note: change this to obtain your chart data from some external source
-data = [{
-    value: rand(20),
-    color: "#F7464A",
-    highlight: "#FF5A5E",
-    label: "January",
-  }, {
-    value: rand(30),
-    color: "#46BFBD",
-    highlight: "#5AD3D1",
-    label: "February",
-  }, {
-    value: rand(30),
-    color: "#FDB45C",
-    highlight: "#FFC870",
-    label: "March",
-  }, {
-    value: rand(30),
-    color: "#949FB1",
-    highlight: "#A8B3C5",
-    label: "April",
-  }, {
-    value: rand(30),
-    color: "#4D5360",
-    highlight: "#4D5360",
-    label: "April",
-  }
+labels = [ 'Jan', 'Feb', 'Mar' ]
+data = [
+  {
+    data: Array.new(3) { rand(30) },
+    backgroundColor: [
+      '#F7464A',
+      '#46BFBD',
+      '#FDB45C',
+    ],
+    hoverBackgroundColor: [
+      '#FF6384',
+      '#36A2EB',
+      '#FFCE56',
+    ],
+  },
 ]
-options = { segmentStrokeColor: '#333' }
+options = { }
 
-send_event('piechart', { segments: data, options: options })
+send_event('piechart', { labels: labels, datasets: data, options: options })
 ```
 
 ### Title Position
@@ -105,3 +99,12 @@ the widget. If not, set their values also using the `data-` attributes:
 ## License
 
 This widget is released under the [MIT License](http://www.opensource.org/licenses/MIT).
+
+## Other Chart.js Widgets
+
+- [Bar Chart](https://github.com/jorgemorgado/dashing-barchart)
+- [Bubble Chart](https://github.com/jorgemorgado/dashing-bubblechart)
+- [Doughnut Chart](https://github.com/jorgemorgado/dashing-doughnutchart)
+- [Line Chart](https://github.com/jorgemorgado/dashing-linechart)
+- [Polar Chart](https://github.com/jorgemorgado/dashing-polarchart)
+- [Radar Chart](https://github.com/jorgemorgado/dashing-radarchart)

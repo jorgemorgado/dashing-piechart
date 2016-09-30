@@ -24,20 +24,27 @@ class Dashing.PieChart extends Dashing.Widget
     canvas.append("<canvas width=\"#{width}\" height=\"#{height}\" class=\"chart-area\"/>")
 
     @ctx = $(@node).find('.chart-area')[0].getContext('2d')
-    @myData = @get('segments')
 
-    @myChart = new Chart(@ctx).Pie(@myData, $.extend({
-      responsive: true
-      segmentShowStroke: true
-    }, @get('options')))
+    @myChart = new Chart(@ctx, {
+      type: 'pie'
+      data: {
+        labels: @get('labels')
+        datasets: @get('datasets')
+      }
+      options: $.extend({
+        responsive: true
+        maintainAspectRatio: true
+        legend: {
+          display: true
+        }
+      }, @get('options'))
+    });
 
   onData: (data) ->
-    # Load new values, ie,
-    #   @myChart.segments[0].value = data.segments[0].value
-    #   @myChart.segments[1].value = data.segments[1].value
-    #   ...
-    if @myChart && data.segments
-      for i in [0..@myChart.segments.length - 1]
-        @myChart.segments[i].value = data.segments[i].value
+    # Load new values and update chart
+    if @myChart
+      if data.labels then @myChart.data.labels = data.labels
+      if data.datasets then @myChart.data.datasets = data.datasets
+      if data.options then @myChart.options = $.extend(data.options, @myChart.options)
 
       @myChart.update()
